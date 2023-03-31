@@ -4,7 +4,7 @@ return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=localhost;dbname=yii2basico',
     'username' => 'root',
-    'password' => getenv('PASS_DB'),
+    'password' => $_ENV['PASS_DB'], // .env file
     'charset' => 'utf8',
 
     // Schema cache options (for production environment)

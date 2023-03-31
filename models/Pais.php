@@ -1,11 +1,49 @@
 <?php
- 
+
 namespace app\models;
 
-use yii\db\ActiveRecord;
+use Yii;
 
-class Pais extends ActiveRecord
+/**
+ * This is the model class for table "pais".
+ *
+ * @property string $codigo
+ * @property string $nome
+ * @property int $populacao
+ */
+class Pais extends \yii\db\ActiveRecord
 {
-    // não necessariamente precisa escrever código na classe, só com a implementação da classe, o yii descobrirá
-    // o nome da tabela associada a partir do nome da classe
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'pais';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['codigo', 'nome'], 'required'],
+            [['populacao'], 'integer'],
+            [['codigo'], 'string', 'max' => 2],
+            [['nome'], 'string', 'max' => 52],
+            [['codigo'], 'unique'],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'codigo' => 'Codigo',
+            'nome' => 'Nome',
+            'populacao' => 'Populacao',
+        ];
+    }
 }
